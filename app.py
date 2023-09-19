@@ -29,10 +29,10 @@ if symbol:
         # Fetch historical data for a specific date range (e.g., 1 year)
         start_date = datetime.datetime.now() - datetime.timedelta(days=365)
         end_date = datetime.datetime.now()
-        historical_data = yf.download(symbol, start=start_date, end=end_date)
+        historical_data = yf.download(symbol, start=start_date, end=end_date).tz_localize(None)  # Remove timezone info
 
         # Specify the timezone (e.g., UTC) for the DateTimeIndex
-        historical_data.index = historical_data.index.tz_localize(pytz.utc)
+        historical_data.index = pd.to_datetime(historical_data.index).tz_localize(pytz.utc)
 
         # Display historical data
         st.subheader(f"Historical Data for {symbol}")
