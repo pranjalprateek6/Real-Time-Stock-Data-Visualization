@@ -28,7 +28,8 @@ if symbol:
         # Fetch historical data for a specific date range (e.g., 1 year)
         start_date = datetime.datetime.now() - datetime.timedelta(days=365)
         end_date = datetime.datetime.now()
-        historical_data = yf.download(symbol, start=start_date, end=end_date)
+        historical_data = yf.download(symbol, start=start_date, end=end_date).tz_localize(None)
+
         
         # Display historical data
         st.subheader(f"Historical Data for {symbol}")
