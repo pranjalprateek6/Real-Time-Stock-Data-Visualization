@@ -29,13 +29,6 @@ if symbol:
         start_date = datetime.datetime.now() - datetime.timedelta(days=365)
         end_date = datetime.datetime.now()
         historical_data = yf.download(symbol, start=start_date, end=end_date)
-        historical_data = historical_data.reset_index()
-        historical_data['Date'] = historical_data['Date'].dt.tz_localize("UTC").dt.tz_convert(None)
-        historical_data.set_index('Date', inplace=True)
-
-
-
-
         
         # Display historical data
         st.subheader(f"Historical Data for {symbol}")
