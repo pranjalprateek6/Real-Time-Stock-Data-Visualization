@@ -29,7 +29,8 @@ if symbol:
         start_date = datetime.datetime.now() - datetime.timedelta(days=365)
         end_date = datetime.datetime.now()
         historical_data = yf.download(symbol, start=start_date, end=end_date)
-        historical_data.index = historical_data.index.tz_localize("UTC")
+        historical_data.index = pd.to_datetime(historical_data.index).tz_localize(None)
+
 
 
         
